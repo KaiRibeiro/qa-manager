@@ -1,5 +1,5 @@
 import LoginForm from "../../components/login-form/LoginForm";
-import Logo from "../../components/logo/Logo";
+import Logo from "../../components/shared/logo/Logo";
 
 function Login() {
     return (

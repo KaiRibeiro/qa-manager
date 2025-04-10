@@ -5,7 +5,8 @@ import {
 } from "react-router-dom";
 import Home from "./routes/Home/Home";
 import Login from "./routes/Login/Login";
-import Navbar from "./components/navbar/Navbar";
+import Navbar from "./components/shared/navbar/Navbar";
+import TestPlans from "./routes/TestPlans/TestPlans";
 
 function App() {
 
@@ -19,6 +20,15 @@ function App() {
                       <>
                           <Navbar />
                           <Home />
+                      </>
+                  }
+              />
+              <Route
+                  path="/testplans"
+                  element={
+                      <>
+                          <Navbar />
+                          <TestPlans />
                       </>
                   }
               />
