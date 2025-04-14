@@ -1,6 +1,7 @@
 import {PlanStatus} from "./PlanStatus";
 
 export interface TestPlan {
+    id: string;
     name: string;
     description: string;
     status: PlanStatus;

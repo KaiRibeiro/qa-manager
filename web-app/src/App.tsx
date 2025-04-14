@@ -7,6 +7,7 @@ import Home from "./routes/Home/Home";
 import Login from "./routes/Login/Login";
 import Navbar from "./components/shared/navbar/Navbar";
 import TestPlans from "./routes/TestPlans/TestPlans";
+import TestPlanDetails from "./routes/TestPlans/TestPlanDetails";
 
 function App() {
 
@@ -29,6 +30,15 @@ function App() {
                       <>
                           <Navbar />
                           <TestPlans />
+                      </>
+                  }
+              />
+              <Route
+                  path="/testplans/:id"
+                  element={
+                      <>
+                          <Navbar />
+                          <TestPlanDetails />
                       </>
                   }
               />

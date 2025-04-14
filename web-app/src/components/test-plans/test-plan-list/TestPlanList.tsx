@@ -3,6 +3,7 @@ import {PlanStatus} from "../../../types/PlanStatus";
 
 function TestPlanList() {
     const testPlan = {
+        id: "123abc",
         name: "Regression Testing",
         description: "Test description for descriptions purposes.",
         status: PlanStatus.IN_PROGRESS,
@@ -12,7 +13,18 @@ function TestPlanList() {
     }
     return (
         <>
-            <div className="w-7/8 flex flex-col flex-wrap md:flex-row justify-between gap-4">
+            <div className="w-fit md:w-full flex flex-col flex-wrap md:flex-row justify-between gap-8 m-10">
+                <TestPlanCard testPlan={testPlan} />
+                <TestPlanCard testPlan={testPlan} />
+                <TestPlanCard testPlan={testPlan} />
+                <TestPlanCard testPlan={testPlan} />
+                <TestPlanCard testPlan={testPlan} />
+                <TestPlanCard testPlan={testPlan} />
+                <TestPlanCard testPlan={testPlan} />
+                <TestPlanCard testPlan={testPlan} />
+                <TestPlanCard testPlan={testPlan} />
+                <TestPlanCard testPlan={testPlan} />
+                <TestPlanCard testPlan={testPlan} />
                 <TestPlanCard testPlan={testPlan} />
             </div>
         </>
