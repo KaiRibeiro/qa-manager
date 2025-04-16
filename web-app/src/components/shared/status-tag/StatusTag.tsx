@@ -6,7 +6,7 @@ function StatusTag({status}: { status: PlanStatus }) {
             <div
                 className={`${status === PlanStatus.COMPLETE ? "text-emerald-800 bg-emerald-400"
                     : status === PlanStatus.IN_PROGRESS ? "text-yellow-800 bg-amber-100"
-                        : "text-gray-800 bg-gray-400"} w-32 h-8 flex justify-center items-center rounded-sm`}
+                        : "text-gray-800 bg-gray-400"} w-full h-8 flex justify-center items-center rounded-sm p-4`}
             >
                 {status}
             </div>
