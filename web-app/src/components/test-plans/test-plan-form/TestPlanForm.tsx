@@ -1,9 +1,9 @@
-import {TestPlan} from "../../types/TestPlan";
+import {TestPlan} from "../../../types/TestPlan";
 import {z} from "zod";
-import {testPlanSchema} from "../../schemas/TestPlanSchema";
+import {testPlanSchema} from "../../../schemas/TestPlanSchema";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
-import {PlanStatus} from "../../types/PlanStatus";
+import {PlanStatus} from "../../../enums/PlanStatus";
 import {useEffect} from "react";
 
 function TestPlanForm({testPlan, onValidityChange}: {testPlan: TestPlan, onValidityChange: (isValid: boolean) => void}) {

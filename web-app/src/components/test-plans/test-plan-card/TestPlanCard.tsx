@@ -8,7 +8,7 @@ function TestPlanCard({testPlan}: { testPlan: TestPlan }) {
             <Link to={`/testplans/${testPlan.id}`}>
                 <div className="flex flex-col bg-white p-4 rounded-xl shadow-md min-w-72 max-w-100 min-h-32 text-center justify-center space-y-5">
                     <div className="flex flex-row justify-around items-center space-x-4 w-fit">
-                        <h1 className="font-semibold text-3xl">{testPlan.name}</h1>
+                        <h1 className="font-semibold text-2xl">{testPlan.name}</h1>
                         <div>
                             <StatusTag status={testPlan.status} />
                         </div>

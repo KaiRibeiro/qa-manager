@@ -53,15 +53,17 @@ function Navbar() {
                                 </span>
                             </Link>
 
-                            <li className="relative group flex items-center justify-center space-x-2 h-full w-38 cursor-pointer">
-                                <span className="z-10 flex items-center space-x-2 text-white font-semibold tracking-wider">
-                                    <SlChemistry size={26}/>
-                                    <span>TEST CASES</span>
-                                </span>
-                                <span
-                                    className="absolute bottom-0 left-0 h-[2px] w-0 bg-emerald-400 transition-all duration-300 group-hover:w-full">
-                                </span>
-                            </li>
+                            <Link className="relative group flex items-center justify-center space-x-2 h-full w-38 cursor-pointer" to="/testcases">
+                                <li className="relative group flex items-center justify-center space-x-2 h-full w-38 cursor-pointer">
+                                    <span className="z-10 flex items-center space-x-2 text-white font-semibold tracking-wider">
+                                        <SlChemistry size={26}/>
+                                        <span>TEST CASES</span>
+                                    </span>
+                                    <span
+                                        className="absolute bottom-0 left-0 h-[2px] w-0 bg-emerald-400 transition-all duration-300 group-hover:w-full">
+                                    </span>
+                                </li>
+                            </Link>
 
                             <li className="relative group flex items-center justify-center space-x-2 h-full w-38 cursor-pointer">
                                 <span className="z-10 flex items-center space-x-2 text-white font-semibold tracking-wider">

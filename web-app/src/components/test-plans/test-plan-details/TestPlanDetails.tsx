@@ -1,8 +1,11 @@
-import {PlanStatus} from "../../types/PlanStatus";
-import StatusTag from "../../components/shared/status-tag/StatusTag";
+import {PlanStatus} from "../../../enums/PlanStatus";
+import StatusTag from "../../shared/status-tag/StatusTag";
 import {useState} from "react";
-import ActionButtons from "../../components/shared/action-buttons/ActionButtons";
-import TestPlanForm from "./TestPlanForm";
+import ActionButtons from "../../shared/action-buttons/ActionButtons";
+import TestPlanForm from "../test-plan-form/TestPlanForm";
+import TestPlanCard from "../test-plan-card/TestPlanCard";
+import TestCasesTable from "../../shared/test-cases-table/TestCasesTable";
+import {Priority} from "../../../enums/Priority";
 
 function TestPlanDetails() {
     const [editing, setEditing] = useState(false)
@@ -12,6 +15,7 @@ function TestPlanDetails() {
         id: "123abc",
         name: "Regression Testing",
         description: "Test description for descriptions purposes.",
+        priority: Priority.MEDIUM,
         status: PlanStatus.IN_PROGRESS,
         created_date: new Date(Date.now()),
         last_updated: new Date(Date.now()),
@@ -35,6 +39,16 @@ function TestPlanDetails() {
                     <div className="flex flex-row justify-around mt-4">
                         <ActionButtons isEditing={editing} onClick={() => setEditing(!editing)}
                                        isFormValid={isFormValid}/>
+                    </div>
+                    <div className="flex flex-col justify-center items-center mt-10 font-semibold text-3xl">
+                        <h2>Test Cases</h2>
+                        <button className="rounded-md border border-gray-300 w-full h-14 text-gray-600 bg-white shadow-sm
+                                flex flex-row justify-center items-center text-xl gap-2 font-semibold mt-4">
+                            + Add Test Case
+                        </button>
+                    </div>
+                    <div className="mt-10">
+                        <TestCasesTable />
                     </div>
                 </div>
             </main>

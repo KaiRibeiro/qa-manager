@@ -1,4 +1,4 @@
-import {PlanStatus} from "../../../types/PlanStatus";
+import {PlanStatus} from "../../../enums/PlanStatus";
 
 function StatusTag({status}: { status: PlanStatus }) {
     return (

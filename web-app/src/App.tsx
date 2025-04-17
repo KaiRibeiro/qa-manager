@@ -7,7 +7,8 @@ import Home from "./routes/Home/Home";
 import Login from "./routes/Login/Login";
 import Navbar from "./components/shared/navbar/Navbar";
 import TestPlans from "./routes/TestPlans/TestPlans";
-import TestPlanDetails from "./routes/TestPlans/TestPlanDetails";
+import TestPlanDetails from "./components/test-plans/test-plan-details/TestPlanDetails";
+import TestCases from "./routes/TestCases/TestCases";
 
 function App() {
 
@@ -39,6 +40,15 @@ function App() {
                       <>
                           <Navbar />
                           <TestPlanDetails />
+                      </>
+                  }
+              />
+              <Route
+                  path="/testcases"
+                  element={
+                      <>
+                          <Navbar />
+                          <TestCases />
                       </>
                   }
               />

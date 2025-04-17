@@ -1,11 +1,13 @@
 import TestPlanCard from "../test-plan-card/TestPlanCard";
-import {PlanStatus} from "../../../types/PlanStatus";
+import {PlanStatus} from "../../../enums/PlanStatus";
+import {Priority} from "../../../enums/Priority";
 
 function TestPlanList() {
     const testPlan = {
         id: "123abc",
         name: "Regression Testing",
         description: "Test description for descriptions purposes.",
+        priority: Priority.MEDIUM,
         status: PlanStatus.IN_PROGRESS,
         created_date: new Date(Date.now()),
         last_updated: new Date(Date.now()),

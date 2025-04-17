@@ -25,10 +25,12 @@ function SideDrawer({isSideDrawerOpen, onClick}: { isSideDrawerOpen: boolean, on
                                 <span>TEST PLANS</span>
                             </li>
                         </Link>
-                        <li className="flex w-full h-14 items-center justify-start space-x-4 pl-4">
-                            <SlChemistry size={30}/>
-                            <span>TEST CASES</span>
-                        </li>
+                        <Link className="flex w-full h-14  items-center justify-start space-x-4 pl-4" to="/testcases">
+                            <li className="flex w-full h-14  items-center justify-start space-x-4">
+                                <SlChemistry size={30}/>
+                                <span>TEST CASES</span>
+                            </li>
+                        </Link>
                         <li className="flex w-full h-14 items-center justify-start space-x-4 pl-4">
                             <LiaListOlSolid size={30}/>
                             <span>TEST STEPS</span>
