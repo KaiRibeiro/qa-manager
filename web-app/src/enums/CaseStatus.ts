@@ -1,0 +1,11 @@
+export enum CaseStatus {
+    NOT_STARTED = 'NOT_STARTED',
+    IN_PROGRESS = 'IN_PROGRESS',
+    PASSED = 'PASSED',
+    FAILED = 'FAILED',
+    BLOCKED = 'BLOCKED',
+    SKIPPED = 'SKIPPED',
+    REOPENED = 'REOPENED',
+    CLOSED = 'CLOSED',
+    PENDING = 'PENDING',
+}
