@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     environment: str = "dev"
     debug: bool = Field(True, alias="DEBUG")
     secret_key: str = Field(..., alias="SECRET_KEY")
+    algorithm: str = Field(..., alias="ALGORITHM")
     access_token_expire_min: int = 30
     db_url: str = Field(..., alias="DB_URL")
 
