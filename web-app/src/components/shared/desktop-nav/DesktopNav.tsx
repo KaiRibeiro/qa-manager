@@ -3,11 +3,13 @@ import { SlChemistry, SlControlPlay, SlHome } from 'react-icons/sl';
 import { LiaClipboardCheckSolid, LiaListOlSolid } from 'react-icons/lia';
 
 const isActiveRoute = (route: string) => {
-  if(useLocation().pathname === route) {
-    return <span className="absolute bottom-0 left-0 h-[2px] bg-emerald-400 w-full"></span>
+  if (useLocation().pathname === route) {
+    return <span className="absolute bottom-0 left-0 h-[2px] bg-emerald-400 w-full"></span>;
   }
-  return <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
-}
+  return (
+    <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
+  );
+};
 
 function DesktopNav() {
   return (
@@ -22,7 +24,7 @@ function DesktopNav() {
               <SlHome size={22} />
               <span>HOME</span>
             </span>
-            {isActiveRoute("/")}
+            {isActiveRoute('/')}
           </li>
         </Link>
 
@@ -35,7 +37,7 @@ function DesktopNav() {
               <LiaClipboardCheckSolid size={26} />
               <span>TEST PLANS</span>
             </span>
-            {isActiveRoute("/testplans")}
+            {isActiveRoute('/testplans')}
           </li>
         </Link>
 
@@ -48,7 +50,7 @@ function DesktopNav() {
               <SlChemistry size={26} />
               <span>TEST CASES</span>
             </span>
-            {isActiveRoute("/testcases")}
+            {isActiveRoute('/testcases')}
           </li>
         </Link>
 
@@ -57,7 +59,7 @@ function DesktopNav() {
             <LiaListOlSolid size={26} />
             <span>TEST STEPS</span>
           </span>
-          {isActiveRoute("/steps")}
+          {isActiveRoute('/steps')}
         </li>
 
         <li className="relative group flex items-center justify-center space-x-2 h-full w-38 cursor-pointer">
@@ -65,7 +67,7 @@ function DesktopNav() {
             <SlControlPlay size={26} />
             <span>TEST RUNS</span>
           </span>
-          {isActiveRoute("/runs")}
+          {isActiveRoute('/runs')}
         </li>
       </ul>
     </>

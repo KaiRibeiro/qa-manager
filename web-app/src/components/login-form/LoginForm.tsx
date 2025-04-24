@@ -1,7 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { loginSchema } from '../../schemas/LoginSchema';
+import { loginSchema } from '../../schemas/auth/LoginSchema';
 import { z } from 'zod';
+import { Link } from 'react-router-dom';
 
 function LoginForm() {
   type FormData = z.infer<typeof loginSchema>;
@@ -71,13 +72,14 @@ function LoginForm() {
 
             <span className="text-lg font-light">OR</span>
 
-            <button
-              type="button"
-              className="border border-gray-300 rounded-2xl w-[280px] h-[50px] flex items-center justify-center shadow-md hover:bg-gray-200 transition duration-200 ease-in-out hover:cursor-pointer"
-            >
-              <img className="w-8 h-8" src="/gmail_logo.svg" alt="Google login" />
-              <span className="ml-2 text-lg font-medium">Sign in with Google</span>
-            </button>
+            <Link to={'/register'}>
+              <button
+                type="button"
+                className="border border-gray-300 rounded-2xl w-[280px] h-[50px] flex items-center justify-center shadow-md hover:bg-gray-200 transition duration-200 ease-in-out hover:cursor-pointer"
+              >
+                <span className="ml-2 text-lg font-medium">Sign Up</span>
+              </button>
+            </Link>
           </div>
         </div>
       </form>
