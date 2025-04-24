@@ -13,6 +13,7 @@ class Settings(BaseSettings):
     algorithm: str = Field(..., alias="ALGORITHM")
     access_token_expire_min: int = 30
     db_url: str = Field(..., alias="DB_URL")
+    allowed_origins:  str = Field(..., alias="ALLOWED_ORIGINS")
 
     model_config = SettingsConfigDict(
         env_file=str(ENV_PATH),
