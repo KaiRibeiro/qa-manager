@@ -2,10 +2,16 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema } from '../../schemas/auth/LoginSchema';
 import { z } from 'zod';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
+import { useState } from 'react';
 
 function LoginForm() {
   type FormData = z.infer<typeof loginSchema>;
+  const { login } = useAuth();
+  const [hasError, setHasError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
+  const navigate = useNavigate();
 
   const {
     register,
@@ -13,11 +19,18 @@ function LoginForm() {
     formState: { errors, isSubmitting, isValid },
   } = useForm<FormData>({
     resolver: zodResolver(loginSchema),
-    mode: 'onBlur',
+    mode: 'onChange',
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log('Form Data:', data);
+  const onSubmit = async (data: FormData) => {
+    try {
+      await login(data.email, data.password);
+      navigate('/');
+    } catch (error) {
+      setHasError(true);
+      // @ts-ignore
+      setErrorMessage(error.message);
+    }
   };
 
   return (
@@ -39,7 +52,11 @@ function LoginForm() {
                 id="email_input"
                 placeholder="user@email.com"
                 className="border mt-2 rounded-md w-full h-10 border-black placeholder:text-lg placeholder:opacity-40 pl-2 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-400 transition"
-                {...register('email')}
+                {...register('email', {
+                  onChange: (e) => {
+                    e.target.value = e.target.value.replace(/\s+/g, '');
+                  },
+                })}
               />
               {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
             </div>
@@ -51,7 +68,11 @@ function LoginForm() {
               <input
                 type="password"
                 id="password_input"
-                {...register('password')}
+                {...register('password', {
+                  onChange: (e) => {
+                    e.target.value = e.target.value.replace(/\s+/g, '');
+                  },
+                })}
                 placeholder="Password"
                 className="border mt-2 rounded-md w-full h-10 border-black placeholder:text-lg placeholder:opacity-40 pl-2 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-400 transition"
               />
@@ -62,6 +83,7 @@ function LoginForm() {
           </div>
 
           <div className="flex flex-col items-center mt-8 space-y-3">
+            {hasError && <p className="text-red-500 text-sm mt-1">{errorMessage}</p>}
             <button
               disabled={isSubmitting || !isValid}
               type="submit"

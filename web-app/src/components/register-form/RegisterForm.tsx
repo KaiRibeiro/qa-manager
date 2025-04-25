@@ -83,7 +83,11 @@ function RegisterForm() {
                 id="email_input"
                 placeholder="user@email.com"
                 className="border mt-2 rounded-md w-full h-10 border-black placeholder:text-lg placeholder:opacity-40 pl-2 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-400 transition"
-                {...register('email')}
+                {...register('email', {
+                  onChange: (e) => {
+                    e.target.value = e.target.value.replace(/\s+/g, '');
+                  },
+                })}
               />
               {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
             </div>
@@ -95,7 +99,11 @@ function RegisterForm() {
               <input
                 type="password"
                 id="password_input"
-                {...register('password')}
+                {...register('password', {
+                  onChange: (e) => {
+                    e.target.value = e.target.value.replace(/\s+/g, '');
+                  },
+                })}
                 placeholder="Password"
                 className="border mt-2 rounded-md w-full h-10 border-black placeholder:text-lg placeholder:opacity-40 pl-2 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-400 transition"
               />

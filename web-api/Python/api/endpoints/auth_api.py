@@ -63,6 +63,7 @@ async def logout(response: Response):
     response.delete_cookie("access_token")
     return {"message": "Logged out"}
 
+@router.get("/me")
 async def get_current_user(token: Annotated[str, Depends(get_token_from_cookie)]):
     auth_service = AuthService()
     return auth_service.get_current_user(token)
