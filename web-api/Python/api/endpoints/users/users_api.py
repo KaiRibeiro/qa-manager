@@ -6,9 +6,9 @@ from fastapi.params import Depends
 from sqlalchemy.orm import Session
 from starlette import status
 
-from api.endpoints.auth_api import get_current_user
+from api.endpoints.auth.auth_api import get_current_user
 from db.session import get_session
-from schemas import UserOutSchema, UserCreateSchema
+from schemas import UserOutSchema
 
 router = APIRouter()
 user_dependency = Annotated[dict, Depends(get_current_user)]

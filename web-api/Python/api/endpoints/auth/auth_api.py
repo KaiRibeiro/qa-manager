@@ -1,8 +1,7 @@
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, Response, Request
-from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
-from jose import JWTError
+from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 from starlette import status
 
@@ -11,7 +10,7 @@ from db.session import get_session
 
 from schemas import UserCreateSchema
 from services import UserService
-from services.auth.auth_service import AuthService
+from services import AuthService
 
 router = APIRouter()
 def get_token_from_cookie(request: Request):
