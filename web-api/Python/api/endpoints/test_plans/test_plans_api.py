@@ -1,4 +1,4 @@
-from typing import Annotated
+from typing import Annotated, List
 
 from fastapi import APIRouter, HTTPException
 from fastapi.params import Depends
@@ -13,7 +13,6 @@ from services import TestPlansService
 router = APIRouter()
 user_dependency = Annotated[dict, Depends(get_current_user)]
 
-#TODO: Add owner id in the backend
 @router.post("/", response_model=TestPlanOutSchema, status_code=status.HTTP_201_CREATED)
 async def create_plan(plan_request: TestPlanCreateSchema,user: user_dependency, session: Session = Depends(get_session)):
     service = TestPlansService(session)
@@ -33,3 +32,16 @@ async def create_plan(plan_request: TestPlanCreateSchema,user: user_dependency, 
                              last_updated=plan.last_updated,
                              owner_id=plan.owner_id
     )
+
+@router.get("/", response_model=List[TestPlanOutSchema], status_code=status.HTTP_200_OK)
+async def get_plans(user: user_dependency, session: Session = Depends(get_session)):
+    # Todo: Add limit later for pagination
+    service = TestPlansService(session)
+    if user is None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Authorization Error"
+        )
+    plans = service.get_plans(user)
+
+    return plans

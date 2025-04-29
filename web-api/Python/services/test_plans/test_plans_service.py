@@ -25,3 +25,8 @@ class TestPlansService:
             owner_id=plan_item.owner_id
         )
         return plan_out
+
+    def get_plans(self, user):
+        #Todo: Add limit later for pagination
+        plans = self.session.query(TestPlanModel).filter(TestPlanModel.owner_id == user['id']).all()
+        return plans
