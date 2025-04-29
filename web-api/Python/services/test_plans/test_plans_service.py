@@ -5,12 +5,12 @@ class TestPlansService:
     def __init__(self, session):
         self.session = session
 
-    def create_plan(self, request_data: TestPlanCreateSchema):
+    def create_plan(self, request_data: TestPlanCreateSchema, user):
         plan_item = TestPlanModel(name=request_data.name,
                                   description=request_data.description,
                                   priority=request_data.priority,
                                   status=request_data.status,
-                                  owner_id=1)
+                                  owner_id=user['id'])
         self.session.add(plan_item)
         self.session.commit()
         self.session.refresh(plan_item)

@@ -22,7 +22,7 @@ async def create_plan(plan_request: TestPlanCreateSchema,user: user_dependency, 
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Authorization Error"
         )
-    plan = service.create_plan(plan_request)
+    plan = service.create_plan(plan_request, user)
 
     return TestPlanOutSchema(id=plan.id,
                              name=plan.name,
