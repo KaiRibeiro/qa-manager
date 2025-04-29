@@ -34,7 +34,10 @@ function TestPlanCard({ testPlan }: { testPlan: TestPlan }) {
 
           <div className="flex flex-row justify-between items-center space-x-2 text-sm text-gray-700 mt-4">
             <div>
-              Created by <span className="font-bold">{testPlan.owner_id}</span>
+              Created at{' '}
+              <span className="font-bold">
+                {new Date(testPlan.created_date).toLocaleDateString()}
+              </span>
             </div>
             <span>|</span>
             <div>Last updated: {new Date(testPlan.last_updated).toLocaleDateString()}</div>
