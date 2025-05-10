@@ -49,7 +49,7 @@ async def edit_case(case_id: int, case_request: TestCaseEditSchema,user: user_de
 
     if existing_case is None:
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
+            status_code=status.HTTP_404_NOT_FOUND,
             detail="Case does not exist"
         )
 
@@ -86,7 +86,7 @@ async def get_case(case_id: int, user: user_dependency, session: Session = Depen
 
     if existing_case is None:
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
+            status_code=status.HTTP_404_NOT_FOUND,
             detail="Case does not exist"
         )
 

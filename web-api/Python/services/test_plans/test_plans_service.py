@@ -60,3 +60,7 @@ class TestPlansService:
         #Todo: Add limit later for pagination
         plans = self.session.query(TestPlanModel).filter(TestPlanModel.owner_id == user['id']).all()
         return plans
+
+    def assign_cases_to_plan(self, user):
+        plans = self.session.query(TestPlanModel).filter(TestPlanModel.owner_id == user['id']).all()
+        return plans

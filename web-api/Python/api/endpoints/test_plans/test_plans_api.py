@@ -47,7 +47,7 @@ async def get_plan(plan_id: int, user: user_dependency, session: Session = Depen
 
     if existing_plan is None:
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
+            status_code=status.HTTP_404_NOT_FOUND,
             detail="Plan does not exist"
         )
 
@@ -85,7 +85,7 @@ async def edit_plan(plan_id: int, plan_request: TestPlanEditSchema,user: user_de
 
     if existing_plan is None:
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
+            status_code=status.HTTP_404_NOT_FOUND,
             detail="Plan does not exist"
         )
 
