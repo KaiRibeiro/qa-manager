@@ -14,7 +14,7 @@ class TestCaseModel(Base):
     priority = Column(String(15), nullable=False)
     status = Column(String(15), nullable=False)
     expected_result = Column(String(100), nullable=False)
-    actual_result = Column(String(100))
+    actual_result = Column(String(100), default='')
     created_date = Column(DateTime, default=datetime.now)
     last_updated = Column(DateTime, default=datetime.now)
     owner_id = Column(Integer, ForeignKey('user.id'), nullable=False)
