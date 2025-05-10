@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     debug: bool = Field(True, alias="DEBUG")
     secret_key: str = Field(..., alias="SECRET_KEY")
     algorithm: str = Field(..., alias="ALGORITHM")
-    access_token_expire_min: int = 30
+    access_token_expire_min: int = Field(..., alias="EXPIRE_TOKEN")
     db_url: str = Field(..., alias="DB_URL")
     allowed_origins:  str = Field(..., alias="ALLOWED_ORIGINS")
 
