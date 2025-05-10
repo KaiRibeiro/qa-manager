@@ -5,7 +5,4 @@ export enum CaseStatus {
   FAILED = 'FAILED',
   BLOCKED = 'BLOCKED',
   SKIPPED = 'SKIPPED',
-  REOPENED = 'REOPENED',
-  CLOSED = 'CLOSED',
-  PENDING = 'PENDING',
 }
