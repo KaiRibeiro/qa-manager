@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from models import TestCaseModel
-from schemas import TestCaseCreateSchema, TestCaseOutSchema, TestCaseEditSchema
+from schemas import TestCaseCreateSchema, TestCaseOutSchema, TestCaseEditSchema, PlanCaseSchema
 
 
 class TestCasesService:
@@ -65,5 +65,13 @@ class TestCasesService:
     def get_cases(self, user):
         #Todo: Add limit later for pagination
         cases = self.session.query(TestCaseModel).filter(TestCaseModel.owner_id == user['id']).all()
+
+        return cases
+
+    def get_cases_by_ids(self, request_data: PlanCaseSchema, user):
+        cases = (self.session.query(TestCaseModel)
+                 .filter(TestCaseModel.owner_id == user['id'])
+                 .filter(TestCaseModel.id.in_(request_data.test_case_ids))
+                 .all())
 
         return cases

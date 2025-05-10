@@ -1,6 +1,8 @@
 from datetime import datetime
+from typing import List
 
 from models import TestPlanModel
+from models.test_cases.test_case_model import TestCaseModel
 from schemas import TestPlanCreateSchema, TestPlanOutSchema
 from schemas.test_plans.test_plan_schema import TestPlanEditSchema
 
@@ -61,6 +63,16 @@ class TestPlansService:
         plans = self.session.query(TestPlanModel).filter(TestPlanModel.owner_id == user['id']).all()
         return plans
 
-    def assign_cases_to_plan(self, user):
-        plans = self.session.query(TestPlanModel).filter(TestPlanModel.owner_id == user['id']).all()
-        return plans
+    def assign_cases_to_plan(self, plan: TestPlanModel, cases: List[TestCaseModel]):
+        plan.test_cases.extend(cases)
+        self.session.commit()
+        self.session.refresh(plan)
+
+        return plan
+
+    def unassign_cases_to_plan(self, plan: TestPlanModel, case_id: int):
+        plan.test_cases = [c for c in plan.test_cases if c.id != case_id]
+        self.session.commit()
+        self.session.refresh(plan)
+
+        return plan
