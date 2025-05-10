@@ -4,7 +4,7 @@ __pycache__/
 *$py.class
 
 # Virtual environment
-.venv/
+web-api/Python/.venv/
 venv/
 ENV/
 env/
