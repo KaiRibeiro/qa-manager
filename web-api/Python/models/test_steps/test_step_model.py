@@ -1,31 +1,25 @@
 from datetime import datetime
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Boolean
+from sqlalchemy import Boolean, Column, DateTime, Float, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
-
 from db.base import Base
 
 
-class TestCaseModel(Base):
-    __tablename__ = 'test_case'
+class TestStepModel(Base):
+    __tablename__ = 'test_step'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(60), nullable=False)
     description = Column(String(100), nullable=False)
-    priority = Column(String(15), nullable=False)
     status = Column(String(15), nullable=False)
     expected_result = Column(String(100), nullable=False)
     actual_result = Column(String(100), default='')
+    start_time = Column(DateTime, nullable=True)
+    end_time = Column(DateTime, nullable=True)
+    duration = Column(Float, default=0.0)
     created_date = Column(DateTime, default=datetime.now)
     last_updated = Column(DateTime, default=datetime.now)
     owner_id = Column(Integer, ForeignKey('user.id'), nullable=False)
-    test_plans = relationship(
-        "TestPlanModel",
-        secondary="plan_case",
-        back_populates="test_cases",
-    )
-    test_steps = relationship(
-        "TestStepModel",
-        back_populates="test_case",
-        cascade="all, delete-orphan"
-    )
     deleted = Column(Boolean, default=False)
+    test_case_id = Column(Integer, ForeignKey('test_case.id'))
+    
+    test_case = relationship("TestCaseModel", back_populates="test_steps")
