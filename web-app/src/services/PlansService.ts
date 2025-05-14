@@ -33,6 +33,26 @@ class PlansService {
       };
     }
   }
+
+  async create_plan<T>(request_data: T): Promise<ApiResponse> {
+    try {
+      const response: AxiosResponse<T> = await this.axiosInstance.post('/plans/', request_data);
+      return { data: response.data, status: response.status, message: 'Success' };
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        throw {
+          data: error.response.data,
+          status: error.response.status,
+          message: error.response.data?.detail || error.response.statusText,
+        };
+      }
+      throw {
+        data: null,
+        status: 0,
+        message: error instanceof Error ? error.message : 'An unknown error occurred',
+      };
+    }
+  }
 }
 
 export default PlansService;

@@ -19,7 +19,6 @@ function TestPlanList() {
         setHasError(true);
       } finally {
         setIsLoading(false);
-        console.log(plans);
       }
     };
 

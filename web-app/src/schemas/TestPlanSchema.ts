@@ -6,5 +6,6 @@ export const testPlanSchema = z.object({
     .string()
     .min(1, 'Description is required')
     .max(100, 'Description must be 100 characters or less'),
-  status: z.string().min(1, 'Status is required'),
+  priority: z.enum(['LOW', 'MEDIUM', 'HIGH']),
+  status: z.enum(['DRAFT', 'IN_PROGRESS', 'COMPLETE']),
 });
