@@ -14,6 +14,26 @@ class PlansService {
     });
   }
 
+  async get_plan_by_id<T>(id: T): Promise<ApiResponse> {
+    try {
+      const response: AxiosResponse<T> = await this.axiosInstance.get(`/plans/${id}`);
+      return { data: response.data, status: response.status, message: 'Success' };
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        throw {
+          data: error.response.data,
+          status: error.response.status,
+          message: error.response.data?.detail || error.response.statusText,
+        };
+      }
+      throw {
+        data: null,
+        status: 0,
+        message: error instanceof Error ? error.message : 'An unknown error occurred',
+      };
+    }
+  }
+
   async get_plans<T>(): Promise<ApiResponse> {
     try {
       const response: AxiosResponse<T> = await this.axiosInstance.get('/plans/');

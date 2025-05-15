@@ -11,7 +11,7 @@ function CreateButton({ defaultText, onClick }: { defaultText: string; onClick: 
                         flex items-center justify-center gap-2"
     >
       <SlPlus size={25} />
-      Create New {defaultText}
+      Add {defaultText}
     </button>
   );
 }

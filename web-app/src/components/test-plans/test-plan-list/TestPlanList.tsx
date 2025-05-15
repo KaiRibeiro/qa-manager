@@ -1,20 +1,27 @@
 import TestPlanCard from '../test-plan-card/TestPlanCard';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import PlansService from '../../../services/PlansService';
 import { TestPlan } from '../../../types/TestPlan';
 import NoResultsMessage from '../../shared/no-results-message/NoResultsMessage';
+import ErrorMessage from '../../shared/error-message/ErrorMessage';
 
-function TestPlanList() {
-  const plansService = new PlansService();
+function TestPlanList({ refresh }: { refresh: boolean }) {
+  const plansService = useMemo(() => new PlansService(), []);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
-  const [plans, setPlans] = useState([]);
+  const [plans, setPlans] = useState<TestPlan[]>([]);
 
   useEffect(() => {
     const fetchPlans = async () => {
+      setIsLoading(true);
+      setHasError(false);
       try {
         const response = await plansService.get_plans();
-        setPlans(response.data);
+        const sortedPlans = response.data.sort(
+          (a: TestPlan, b: TestPlan) =>
+            new Date(b.created_date).getTime() - new Date(a.created_date).getTime(),
+        );
+        setPlans(sortedPlans);
       } catch (error) {
         setHasError(true);
       } finally {
@@ -23,17 +30,24 @@ function TestPlanList() {
     };
 
     fetchPlans().catch(console.error);
-  }, []);
+  }, [refresh]);
 
   //TODO: Add better loading component
-  //TODO: Add better error component
   return (
     <>
-      <div className="w-fit md:w-full flex flex-col flex-wrap md:flex-row justify-around items-center gap-8 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mt-10 px-8">
         {isLoading && 'Loading...'}
-        {hasError && 'Something went wrong.'}
+        {hasError && (
+          <div className="col-span-full flex justify-center items-center h-full">
+            <ErrorMessage />
+          </div>
+        )}
 
-        {!isLoading && !hasError && plans.length === 0 && <NoResultsMessage />}
+        {!isLoading && !hasError && plans.length === 0 && (
+          <div className="col-span-full flex justify-center items-center">
+            <NoResultsMessage />
+          </div>
+        )}
 
         {!isLoading &&
           !hasError &&
